@@ -6,6 +6,6 @@ def calcula_pontos_full_house (dados):
             trinca = True
         if dados.count(face) == 2:
             dupla = True
-        if trinca and dupla:
-            return sum(dados)
+    if trinca and dupla:
+        return sum(dados)
     return 0

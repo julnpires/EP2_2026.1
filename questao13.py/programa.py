@@ -15,6 +15,7 @@ cartela = {
 }
 }
 
+imprime_cartela(cartela)
 for rodada in range(12):
     dados = []
     for i in range(5):

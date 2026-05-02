@@ -71,7 +71,7 @@ for rodada in range(12):
             while categoria_valida == False:
                 print("Digite a combinação desejada:")
                 categoria = input()
-                if categoria in ['1', '2', '3', '4', '5', '6']:
+                if categoria in ['1','2','3','4','5','6']:
                     chave = int(categoria)
                     if cartela['regra_simples'][chave] != -1:
                         print("Essa combinação já foi utilizada.")
@@ -86,6 +86,7 @@ for rodada in range(12):
                         cartela = faz_jogada(dados + guardados, categoria, cartela)
                         finalizado = True
                         categoria_valida = True
+
                 else:
                     print("Combinação inválida. Tente novamente.")
         else:

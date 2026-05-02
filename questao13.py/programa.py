@@ -66,29 +66,27 @@ for rodada in range(12):
             imprime_cartela(cartela)
 
         elif opcao == "0":
-            while True:
+            categoria = None
+            while categoria is None:
                 print("Digite a combinação desejada:")
-                categoria = input()
-                if categoria in ['1','2','3','4','5','6']:
-                    chave = int(categoria)
+                entrada = input()
+                if entrada in ['1','2','3','4','5','6']:
+                    chave = int(entrada)
                     if cartela['regra_simples'][chave] != -1:
                         print("Essa combinação já foi utilizada.")
                     else:
-                        cartela = faz_jogada(dados + guardados, categoria, cartela)
+                        cartela = faz_jogada(dados + guardados, entrada, cartela)
                         finalizado = True
-                        break
-                elif categoria in cartela['regra_avancada']:
-                    if cartela['regra_avancada'][categoria] != -1:
+                        categoria = entrada
+                elif entrada in cartela['regra_avancada']:
+                    if cartela['regra_avancada'][entrada] != -1:
                         print("Essa combinação já foi utilizada.")
                     else:
-                        cartela = faz_jogada(dados + guardados, categoria, cartela)
+                        cartela = faz_jogada(dados + guardados, entrada, cartela)
                         finalizado = True
-                        break
-                else:
-                    print("Combinação inválida. Tente novamente.")
+                        categoria = entrada
         else:
-            print("Opção inválida. Tente novamente.")
-            continue
+            print("Combinação inválida. Tente novamente.")
 
 pontuacao_total = 0
 for valor in cartela['regra_simples'].values():

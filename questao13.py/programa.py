@@ -58,9 +58,10 @@ for rodada in range(12):
                 quantidade = 5 - len(guardados)
                 for i in range(quantidade):
                     dados.append(random.randint(1, 6))
-                rerrolagens = rerrolagens + 1
+                rerrolagens += 1
             else:
                 print("Você já usou todas as rerrolagens.")
+                continue 
 
         elif opcao == "4":
             imprime_cartela(cartela)
@@ -74,6 +75,7 @@ for rodada in range(12):
                     chave = int(entrada)
                     if cartela['regra_simples'][chave] != -1:
                         print("Essa combinação já foi utilizada.")
+                        continue
                     else:
                         cartela = faz_jogada(dados + guardados, entrada, cartela)
                         finalizado = True
@@ -81,12 +83,14 @@ for rodada in range(12):
                 elif entrada in cartela['regra_avancada']:
                     if cartela['regra_avancada'][entrada] != -1:
                         print("Essa combinação já foi utilizada.")
+                        continue
                     else:
                         cartela = faz_jogada(dados + guardados, entrada, cartela)
                         finalizado = True
                         categoria = entrada
                 else:
                     print("Combinação inválida. Tente novamente.")
+                    continue
         else:
             print("Opção inválida. Tente novamente.")
             continue
@@ -98,7 +102,6 @@ for valor in cartela['regra_simples'].values():
 for valor in cartela['regra_avancada'].values():
     if valor != -1:
         pontuacao_total += valor
-
 soma_simples = 0
 for valor in cartela['regra_simples'].values():
     if valor != -1:

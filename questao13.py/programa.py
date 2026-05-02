@@ -85,8 +85,11 @@ for rodada in range(12):
                         cartela = faz_jogada(dados + guardados, entrada, cartela)
                         finalizado = True
                         categoria = entrada
+                else:
+                    print("Combinação inválida. Tente novamente.")
         else:
-            print("Combinação inválida. Tente novamente.")
+            print("Opção inválida. Tente novamente.")
+            continue
 
 pontuacao_total = 0
 for valor in cartela['regra_simples'].values():

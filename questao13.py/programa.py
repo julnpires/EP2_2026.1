@@ -6,13 +6,13 @@ cartela = {
         1: -1, 2: -1, 3: -1, 4: -1, 5: -1, 6: -1
     },
     'regra_avancada': {
-    'sem_combinacao': -1,
-    'quadra': -1,
-    'full_house': -1,
-    'sequencia_baixa': -1,
-    'sequencia_alta': -1,
-    'cinco_iguais': -1
-}
+        'sem_combinacao': -1,
+        'quadra': -1,
+        'full_house': -1,
+        'sequencia_baixa': -1,
+        'sequencia_alta': -1,
+        'cinco_iguais': -1
+    }
 }
 
 imprime_cartela(cartela)
@@ -20,13 +20,12 @@ for rodada in range(12):
     dados = []
     for i in range(5):
         dados.append(random.randint(1, 6))
-
     guardados = []
     finalizado = False
     rerrolagens = 0
     while finalizado == False:
-        print('Dados rolados:', dados)
-        print('Dados guardados:', guardados)
+        print("Dados rolados:", dados)
+        print("Dados guardados:", guardados)
         print("Digite 1 para guardar um dado, 2 para remover um dado, 3 para rerrolar, 4 para ver a cartela ou 0 para marcar a pontuação:")
         opcao = input()
         if opcao == "1":
@@ -61,14 +60,13 @@ for rodada in range(12):
                     dados.append(random.randint(1, 6))
                 rerrolagens = rerrolagens + 1
             else:
-                print("Você já usou todas as rerrolagens.") 
+                print("Você já usou todas as rerrolagens.")
 
         elif opcao == "4":
             imprime_cartela(cartela)
 
         elif opcao == "0":
-            categoria_valida = False
-            while categoria_valida == False:
+            while True:
                 print("Digite a combinação desejada:")
                 categoria = input()
                 if categoria in ['1','2','3','4','5','6']:
@@ -78,33 +76,32 @@ for rodada in range(12):
                     else:
                         cartela = faz_jogada(dados + guardados, categoria, cartela)
                         finalizado = True
-                        categoria_valida = True
+                        break
                 elif categoria in cartela['regra_avancada']:
                     if cartela['regra_avancada'][categoria] != -1:
                         print("Essa combinação já foi utilizada.")
                     else:
                         cartela = faz_jogada(dados + guardados, categoria, cartela)
                         finalizado = True
-                        categoria_valida = True
-
+                        break
                 else:
                     print("Combinação inválida. Tente novamente.")
         else:
             print("Opção inválida. Tente novamente.")
+            continue
 
 pontuacao_total = 0
 for valor in cartela['regra_simples'].values():
     if valor != -1:
         pontuacao_total += valor
 for valor in cartela['regra_avancada'].values():
-    if valor!= -1:
+    if valor != -1:
         pontuacao_total += valor
 
 soma_simples = 0
 for valor in cartela['regra_simples'].values():
     if valor != -1:
         soma_simples += valor
-
 if soma_simples >= 63:
     pontuacao_total += 35
 
